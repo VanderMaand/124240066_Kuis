@@ -15,7 +15,7 @@ class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
 
   /// Daftar halaman sesuai urutan tab.
-  final List<Widget> _pages = const [HomePage(), MyProfile()];
+  final List<Widget> _pages = const [HomePage(), ProfilePage()];
 
   @override
   Widget build(BuildContext context) {
