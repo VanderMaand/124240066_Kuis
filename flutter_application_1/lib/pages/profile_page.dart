@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'login_page.dart';
 
 const String kMaleImage =
@@ -8,7 +9,12 @@ const String kFemaleImage =
 
 class ProfilePage extends StatefulWidget {
   final String username;
-  const ProfilePage({super.key, required this.username});
+  final String name = kname;
+  const ProfilePage.withName({
+    super.key,
+    required name,
+    required this.username,
+  });
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -27,7 +33,9 @@ class _ProfilePageState extends State<ProfilePage> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                  color: selected ? Colors.red : Colors.grey, width: 3),
+                color: selected ? Colors.red : Colors.grey,
+                width: 3,
+              ),
             ),
             child: CircleAvatar(
               radius: 32,
@@ -56,9 +64,10 @@ class _ProfilePageState extends State<ProfilePage> {
               backgroundImage: NetworkImage(_profileImage),
             ),
             const SizedBox(height: 16),
-            Text(widget.username,
-                style:
-                    const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            Text(
+              widget.name,
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 16),
             const Text(
               '"Saya bersumpah mengerjakan soal kuis ini dengan cara yang jujur dan tidak curang dengan cara apapun"',

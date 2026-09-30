@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+
 import 'home_page.dart';
 import 'profile_page.dart';
 
 class MainPage extends StatefulWidget {
   final String username;
-  const MainPage({super.key, required this.username});
+  final String name;
+  const MainPage.withName({
+    super.key,
+    required this.name,
+    required this.username,
+  });
+  // const MainPage({super.key, required this.username});
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -17,7 +24,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     final pages = [
       const HomePage(),
-      ProfilePage(username: widget.username),
+      ProfilePage.withName(name: widget.name, username: widget.username),
     ];
 
     return Scaffold(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'main_page.dart';
 
+const String kname = 'Sepi Ananda';
 const String kUsername = '124240066';
 const String kPassword = 'sistem informasi';
 
@@ -38,7 +39,9 @@ class _LoginPageState extends State<LoginPage> {
       _showSnack('Login berhasil! Selamat datang, $username', Colors.green);
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => MainPage(username: username)),
+        MaterialPageRoute(
+          builder: (_) => MainPage.withName(name: username, username: username),
+        ),
       );
     } else {
       _showSnack('Login gagal! Username atau password salah', Colors.red);
