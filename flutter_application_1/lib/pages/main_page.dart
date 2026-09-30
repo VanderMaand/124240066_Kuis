@@ -1,43 +1,33 @@
 import 'package:flutter/material.dart';
-
 import 'home_page.dart';
 import 'profile_page.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  final String username;
+  const MainPage({super.key, required this.username});
 
   @override
   State<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-  /// Index tab yang sedang aktif (0 = Home, 1 = Profile).
-  int _currentIndex = 0;
-
-  /// Daftar halaman sesuai urutan tab.
-  final List<Widget> _pages = const [HomePage(), ProfilePage()];
+  int _index = 0;
 
   @override
   Widget build(BuildContext context) {
+    final pages = [
+      const HomePage(),
+      ProfilePage(username: widget.username),
+    ];
+
     return Scaffold(
-      // Hanya halaman aktif yang tampil, tapi semua state tetap hidup.
-      body: IndexedStack(index: _currentIndex, children: _pages),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _currentIndex,
-        onDestinationSelected: (index) {
-          setState(() => _currentIndex = index);
-        },
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.pets_outlined),
-            selectedIcon: Icon(Icons.pets),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.person_outline),
-            selectedIcon: Icon(Icons.person),
-            label: 'Profile',
-          ),
+      body: IndexedStack(index: _index, children: pages),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _index,
+        onTap: (i) => setState(() => _index = i),
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
     );

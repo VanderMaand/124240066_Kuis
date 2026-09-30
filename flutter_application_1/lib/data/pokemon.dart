@@ -1,6 +1,5 @@
-import '../models/pokemon.dart';
+import "../models/pokemon.dart";
 
-// Modelnya buat sendiri ya
 
 final List<Pokemon> pokemonList = [
   Pokemon(
